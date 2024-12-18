@@ -1,3 +1,4 @@
+<?php include 'db_conn.php'?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -173,147 +174,58 @@
         <hr />
         <!-- Row -->
         <div class="row">
-          <!-- Produk 1 -->
-          <div class="col-md-4" id="produk-1">
-            <div class="card">
-              <img
-                src="https://placehold.co/100x100?text=Kaos&font=raleway"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title" class="nama_produk">Kaos</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                  <br />
-                  <small><strong>Rp.30000,00</strong></small>
-                </p>
-                <button
-                  id="item-1-cart"
-                  class="btn btn-success bi bi-cart-plus-fill"
-                  data-name="Kaos"
-                  data-price="30000"
-                  onclick="addCart(this)"
-                ></button>
-                <button
-                  id="item-1-heart"
-                  data-name="Kaos"
-                  data-price="30000"
-                  class="btn btn-light"
-                  onclick="toggleWishlist(this)"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-heart-fill"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-          <!-- Produk 2 -->
-          <div class="col-md-4" id="produk-2">
-            <div class="card">
-              <img
-                src="https://placehold.co/100x100?text=Baju&font=raleway"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title" class="nama_produk">Baju</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                  <br />
-                  <small><strong>Rp.20000,00</strong></small>
-                </p>
-                <button
-                  id="item-2-cart"
-                  class="btn btn-success bi bi-cart-plus-fill"
-                  data-name="Baju"
-                  data-price="20000"
-                  onclick="addCart(this)"
-                ></button>
-                <button
-                  id="item-2-heart"
-                  class="btn btn-light"
-                  data-name="Baju"
-                  data-price="20000"
-                  onclick="toggleWishlist(this)"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-heart-fill"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-          <!-- Produk 3 -->
-          <div class="col-md-4" id="produk-3">
-            <div class="card">
-              <img
-                src="https://placehold.co/100x100?text=Baju+Bekas&font=raleway"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title" class="nama_produk">Kaos Bekas</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                  <br />
-                  <small><strong>Rp.40000,00</strong></small>
-                </p>
-                <button
-                  id="item-3-cart"
-                  class="btn btn-success bi bi-cart-plus-fill"
-                  data-name="Kaos Bekas"
-                  data-price="40000"
-                  onclick="addCart(this)"
-                ></button>
-                <button
-                  id="item-3-heart"
-                  class="btn btn-light"
-                  data-name="Kaos Bekas"
-                  data-price="40000"
-                  onclick="toggleWishlist(this)"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-heart-fill"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
+          <!-- Produk -->
+          <?php
+$sql = 'SELECT * FROM products_tbl';
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        ?>
+                    <div class="col-md-4 mt-2 mb-2" id="<?php echo $row['id'] ?>">
+                      <div class="card">
+                        <img
+                          src="assets/products/<?php echo $row['image'] ?>"
+                          class="card-img-top"
+                          alt="..."
+                        />
+                        <div class="card-body">
+                          <h5 class="card-title"><?php echo $row['name'] ?></h5>
+                          <p class="card-text">
+                          <?php echo substr($row['description'], 0, -60) . "..." ?>
+                            <br />
+                            <small><strong><?php echo "Rp" . number_format(($row['price']), 2, ",", ".") ?></strong></small>
+                          </p>
+                          <button
+                            id="item-1-cart"
+                            class="btn btn-success bi bi-cart-plus-fill"
+                          ></button>
+                          <button
+                            id="item-1-heart"
+                            class="btn btn-light"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-heart-fill"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                      <?php
+}
+} else {
+    echo '<h4>Maaf, produk kami sedang kehabisan stok</h4>';
+}
+?>
         </div>
       </div>
     </div>
