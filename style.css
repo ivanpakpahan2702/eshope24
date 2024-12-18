@@ -1,11 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
-html {
-  font-family: "Space Grotesk", sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+GB+J+Guides:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+
+* {
+  font-family: "Space Grotesk", serif;
   font-optical-sizing: auto;
+  font-style: normal;
 }
 body {
-  background-image: url("https://w0.peakpx.com/wallpaper/508/606/HD-wallpaper-whatsapp-l-background-doodle-pattern-patterns-thumbnail.jpg");
+  background-image: url("assets/images/kenny-eliason-sEwtU-qy06c-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
+
+.logo-24 {
+  font-style: italic;
+  font-weight: bold;
+  color: red;
+}
+
 .bi-heart-fill {
   fill: gray !important;
 }
@@ -14,4 +28,20 @@ body {
   .bi-heart-fill {
     fill: red !important;
   }
+}
+
+.about-us p {
+  text-indent: 3%;
+  text-align: left;
+}
+
+.left-side {
+  float: left;
+  padding: 10px;
+}
+
+.responsive {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
 }
