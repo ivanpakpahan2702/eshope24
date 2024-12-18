@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sample Clothing Shop with Payment Gateway</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container mt-2 mb-5">
+      <!-- Navbar -->
+      <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand"><strong>Clothing Shop</strong></a>
+          <div class="d-flex">
+            <!-- Button Wishlist -->
+            <button
+              type="button"
+              class="btn btn-warning position-relative me-3"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasWishlist"
+              aria-controls="offcanvasExample"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-heart-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+                />
+              </svg>
+              <!-- Badge Wishlist -->
+              <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                id="badge-wishlist"
+              >
+                0
+                <span class="visually-hidden">wishlist</span>
+              </span>
+            </button>
+            <!-- Button Cart -->
+            <button
+              type="button"
+              class="btn btn-primary position-relative"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasCart"
+              aria-controls="offcanvasExample"
+            >
+              <i class="bi bi-cart"></i>
+              <!-- Badge Cart -->
+              <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                id="badge-cart"
+              >
+                0
+                <span class="visually-hidden">cart</span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Carousel -->
+      <div id="carouselExampleFade" class="carousel slide carousel-fade">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="https://placehold.co/1200x300?text=Slide+1&font=raleway"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://placehold.co/1200x300?text=Slide+2&font=raleway"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://placehold.co/1200x300?text=Slide+3&font=raleway"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleFade"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleFade"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <!-- Product -->
+      <h4 class="text-center mt-5 mb-5">Our Product</h4>
+      <!-- Row -->
+      <div class="row">
+        <!-- Produk 1 -->
+        <div class="col-md-4 p-2" id="produk-1">
+          <div class="card">
+            <img
+              src="https://placehold.co/300x300?text=Kaos&font=raleway"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title" class="nama_produk">Kaos</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+                <br />
+                <small><strong>Rp.30000,00</strong></small>
+              </p>
+              <button
+                id="item-1-cart"
+                class="btn btn-success bi bi-cart-plus-fill"
+                data-name="Kaos"
+                data-price="30000"
+                onclick="addCart(this)"
+              ></button>
+              <button
+                id="item-1-heart"
+                data-name="Kaos"
+                data-price="30000"
+                class="btn btn-light"
+                onclick="toggleWishlist(this)"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-heart-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Produk 2 -->
+        <div class="col-md-4 p-2" id="produk-2">
+          <div class="card">
+            <img
+              src="https://placehold.co/300x300?text=Baju&font=raleway"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title" class="nama_produk">Baju</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+                <br />
+                <small><strong>Rp.20000,00</strong></small>
+              </p>
+              <button
+                id="item-2-cart"
+                class="btn btn-success bi bi-cart-plus-fill"
+                data-name="Baju"
+                data-price="20000"
+                onclick="addCart(this)"
+              ></button>
+              <button
+                id="item-2-heart"
+                class="btn btn-light"
+                data-name="Baju"
+                data-price="20000"
+                onclick="toggleWishlist(this)"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-heart-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Produk 3 -->
+        <div class="col-md-4 p-2" id="produk-3">
+          <div class="card">
+            <img
+              src="https://placehold.co/300x300?text=Baju+Bekas&font=raleway"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title" class="nama_produk">Kaos Bekas</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+                <br />
+                <small><strong>Rp.40000,00</strong></small>
+              </p>
+              <button
+                id="item-3-cart"
+                class="btn btn-success bi bi-cart-plus-fill"
+                data-name="Kaos Bekas"
+                data-price="40000"
+                onclick="addCart(this)"
+              ></button>
+              <button
+                id="item-3-heart"
+                class="btn btn-light"
+                data-name="Kaos Bekas"
+                data-price="40000"
+                onclick="toggleWishlist(this)"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-heart-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Offcanvas Wishlists -->
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="offcanvasWishlist"
+      aria-labelledby="offcanvasExampleLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">wishlist</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        Daftar wishlists
+        <br />
+        <p id="daftar-wishlist"></p>
+      </div>
+    </div>
+    <!-- Offcanvas Cart -->
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="offcanvasCart"
+      aria-labelledby="offcanvasExampleLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+          Keranjang Belanja
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">Daftar barang</div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
