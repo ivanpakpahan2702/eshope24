@@ -5,10 +5,16 @@
   <div class="row">
     <!-- Produk -->
     <?php
-    $sql = 'SELECT * FROM products_tbl';
-    $result = mysqli_query($conn, $sql);
-    if (mysqli_num_rows($result) > 0) {
-      while ($row = mysqli_fetch_assoc($result)) {
+    $sql1 = 'SELECT * FROM products_tbl';
+    $result1 = mysqli_query($conn, $sql1);
+    $sql2 = 'SELECT * FROM wishlist_items_tbl WHERE user_id=1';
+    $result2 = mysqli_query($conn, $sql2);
+    while ($row = mysqli_fetch_assoc($result2)) {
+      $wishlisted[] = $row['product_id'];
+    }
+    if (mysqli_num_rows($result1) > 0) {
+      while ($row = mysqli_fetch_assoc($result1)) {
+        $isWishlisted = in_array($row['id'], $wishlisted);
     ?>
         <div class="col-md-4 mt-2 mb-2" id="<?php echo $row['id'] ?>">
           <div class="card">
@@ -28,7 +34,7 @@
                 class="btn btn-success bi bi-cart-plus-fill cart-btn"></button>
               <button
                 id="<?php echo $row['id'] ?>"
-                class="btn btn-light like-btn">
+                class="btn btn-light like-btn <?php echo ($isWishlisted != 0) ? 'is-active' : ''; ?>">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"

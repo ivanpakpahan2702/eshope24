@@ -7,7 +7,10 @@ function update_wishlist($product_id, $user_id) {
       user_id: $user_id,
     },
     success: function (response) {
-      alert("Anda menyukai produk ini");
+      console.log(response);
+    },
+    error: function (xhr, status, error) {
+      console.log("Terjadi kesalahan: " + error);
     },
   });
 }
@@ -15,6 +18,6 @@ function update_wishlist($product_id, $user_id) {
 $(document).ready(function () {
   $(".like-btn").click(function () {
     $("#" + this.id + " .like-btn").toggleClass("is-active");
-    update_wishlist(this.id, "1");
+    update_wishlist(this.id, 1);
   });
 });
