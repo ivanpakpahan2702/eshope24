@@ -8,6 +8,7 @@ function update_wishlist($product_id, $user_id) {
     },
     success: function (response) {
       $("#badge-wishlist").load("src/badge_wishlist.php");
+      $("#daftar-wishlist").load("src/offcanvas_wishlist.php");
     },
     error: function (xhr, status, error) {
       console.log("Terjadi kesalahan: " + error);
@@ -17,7 +18,8 @@ function update_wishlist($product_id, $user_id) {
 
 $(document).ready(function () {
   $("#badge-wishlist").load("src/badge_wishlist.php");
-  $(".like-btn").click(function () {
+  $("#daftar-wishlist").load("src/offcanvas_wishlist.php");
+  $(document).on("click", ".like-btn", function () {
     $("#" + this.id + " .like-btn").toggleClass("is-active");
     update_wishlist(this.id, 1);
   });
