@@ -34,14 +34,12 @@ if (mysqli_num_rows($result) > 0) {
                         <hr />
                         <small><strong><?php echo "Rp" . number_format(($row['price']), 2, ",", ".") ?></strong></small>
                     </p>
-
                     <div class="d-flex mb-4">
                         <label for="sub_total" class="form-label me-2">Jumlah (Kg)</label>
                         <button id="<?php echo $row['id'] ?>" class="btn minus btn-danger cart-btn-minus me-2">-</button>
                         <input class="form-control" id="sub_total" type="text" value="<?php echo $row['sub_total']; ?>" style="text-align: center;" min="0" max="<?php echo $row['stock']; ?>" disabled />
                         <button id="<?php echo $row['id'] ?>" class="btn ms-2 btn-success cart-btn">+</button>
                     </div>
-
                 </div>
             </div>
         </li>
