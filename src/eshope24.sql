@@ -16,51 +16,38 @@
 CREATE DATABASE IF NOT EXISTS `eshope24` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `eshope24`;
 
--- Dumping structure for table eshope24.carts_tbl
-CREATE TABLE IF NOT EXISTS `carts_tbl` (
-  `id` int(11) NOT NULL,
+-- Dumping structure for table eshope24.cart_items_tbl
+CREATE TABLE IF NOT EXISTS `cart_items_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status_transaction` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_carts_tbl_users_tbl` (`user_id`),
-  CONSTRAINT `FK_carts_tbl_users_tbl` FOREIGN KEY (`user_id`) REFERENCES `users_tbl` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Dumping data for table eshope24.carts_tbl: ~0 rows (approximately)
-/*!40000 ALTER TABLE `carts_tbl` DISABLE KEYS */;
-/*!40000 ALTER TABLE `carts_tbl` ENABLE KEYS */;
-
--- Dumping structure for table eshope24.cart_items_tbl
-CREATE TABLE IF NOT EXISTS `cart_items_tbl` (
-  `id` int(11) NOT NULL,
-  `cart_id` int(11) DEFAULT NULL,
-  `product_id` int(11) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`),
-  KEY `FK_cart_items_tbl_carts_tbl` (`cart_id`),
   KEY `FK_cart_items_tbl_products_tbl` (`product_id`),
-  CONSTRAINT `FK_cart_items_tbl_carts_tbl` FOREIGN KEY (`cart_id`) REFERENCES `carts_tbl` (`id`),
-  CONSTRAINT `FK_cart_items_tbl_products_tbl` FOREIGN KEY (`product_id`) REFERENCES `products_tbl` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `FK_cart_items_tbl_users_tbl` (`user_id`),
+  CONSTRAINT `FK_cart_items_tbl_products_tbl` FOREIGN KEY (`product_id`) REFERENCES `products_tbl` (`id`),
+  CONSTRAINT `FK_cart_items_tbl_users_tbl` FOREIGN KEY (`user_id`) REFERENCES `users_tbl` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table eshope24.cart_items_tbl: ~0 rows (approximately)
+-- Dumping data for table eshope24.cart_items_tbl: ~3 rows (approximately)
 /*!40000 ALTER TABLE `cart_items_tbl` DISABLE KEYS */;
+INSERT INTO `cart_items_tbl` (`id`, `product_id`, `user_id`, `created_at`, `updated_at`, `status_transaction`) VALUES
+	(1, 3, 1, '2024-12-21 19:37:32', '2024-12-21 19:37:32', NULL),
+	(2, 1, 1, '2024-12-21 19:50:54', '2024-12-21 19:50:54', NULL),
+	(3, 2, 1, '2024-12-21 19:51:03', '2024-12-21 19:51:03', NULL),
+	(4, 2, 1, '2024-12-21 19:56:28', '2024-12-21 19:56:28', NULL);
 /*!40000 ALTER TABLE `cart_items_tbl` ENABLE KEYS */;
 
 -- Dumping structure for table eshope24.checkouts_tbl
 CREATE TABLE IF NOT EXISTS `checkouts_tbl` (
-  `id` int(11) NOT NULL,
-  `cart_id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `total` int(11) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`),
-  KEY `FK_checkouts_tbl_carts_tbl` (`cart_id`),
-  CONSTRAINT `FK_checkouts_tbl_carts_tbl` FOREIGN KEY (`cart_id`) REFERENCES `carts_tbl` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table eshope24.checkouts_tbl: ~0 rows (approximately)
@@ -94,14 +81,14 @@ INSERT INTO `products_tbl` (`id`, `name`, `description`, `price`, `stock`, `imag
 
 -- Dumping structure for table eshope24.users_tbl
 CREATE TABLE IF NOT EXISTS `users_tbl` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
   `name` varchar(50) DEFAULT NULL,
   `address` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table eshope24.users_tbl: ~0 rows (approximately)
 /*!40000 ALTER TABLE `users_tbl` DISABLE KEYS */;
@@ -121,13 +108,12 @@ CREATE TABLE IF NOT EXISTS `wishlist_items_tbl` (
   KEY `FK_wishlist_items_tbl_users_tbl` (`user_id`),
   CONSTRAINT `FK__products_tbl` FOREIGN KEY (`product_id`) REFERENCES `products_tbl` (`id`),
   CONSTRAINT `FK_wishlist_items_tbl_users_tbl` FOREIGN KEY (`user_id`) REFERENCES `users_tbl` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table eshope24.wishlist_items_tbl: ~6 rows (approximately)
+-- Dumping data for table eshope24.wishlist_items_tbl: ~1 rows (approximately)
 /*!40000 ALTER TABLE `wishlist_items_tbl` DISABLE KEYS */;
 INSERT INTO `wishlist_items_tbl` (`id`, `product_id`, `created_at`, `updated_at`, `user_id`) VALUES
-	(9, 5, '2024-12-19 23:51:17', '2024-12-19 23:51:17', 1),
-	(10, 6, '2024-12-19 23:51:19', '2024-12-19 23:51:19', 1);
+	(46, 3, '2024-12-21 19:37:16', '2024-12-21 19:37:16', 1);
 /*!40000 ALTER TABLE `wishlist_items_tbl` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

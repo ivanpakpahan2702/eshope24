@@ -37,5 +37,10 @@
             data-bs-dismiss="offcanvas"
             aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body">Daftar barang</div>
+    <div class="offcanvas-body">Daftar barang
+        <hr>
+        <br />
+        <div id="daftar-cart">
+        </div>
+    </div>
 </div>

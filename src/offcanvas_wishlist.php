@@ -9,7 +9,6 @@ if (mysqli_num_rows($result) > 0) {
 ?>
         <li class="list-group-item">
             <div class="card">
-                <input type="hidden" name="product_id" id="product_id" value="<?php echo $row['id']; ?>">
                 <img
                     src="assets/products/<?php echo $row['product_image'] ?>"
                     class="card-img-top"

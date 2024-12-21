@@ -7,10 +7,9 @@ if (mysqli_num_rows($result) > 0) {
 ?>
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <input type="hidden" name="modal-product-id" id="modal_product_id" value="<?php echo $row['id'] ?>">
                 <div class="modal-header">
                     <div class="modal-title fs-5" id="modal_product_name"><?php echo $row['name'] ?></div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" id="close_modal_view"></button>
                 </div>
                 <div class="modal-body">
                     <div class="text-center mb-3">
@@ -34,9 +33,8 @@ if (mysqli_num_rows($result) > 0) {
                     <hr>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button
-                        class="btn btn-success bi bi-cart-plus-fill cart-btn"></button>
+                        class="btn btn-success bi bi-cart-plus-fill cart-btn" id="<?php echo $row['id'] ?>"></button>
                 </div>
             </div>
         </div>
