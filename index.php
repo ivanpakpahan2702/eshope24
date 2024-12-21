@@ -16,9 +16,11 @@
     <?php include 'components/product.php' ?>
   </div>
 
-  <!--Offcanvas-->
+  <!-- Offcanvas -->
   <?php include 'components/offcanvas.php'; ?>
 
+  <!-- Modal -->
+  <?php include 'components/modal.php'; ?>
 
   <script src="assets/bootstrap_5_3_3/js/bootstrap.bundle.min.js"></script>
   <script src="assets/jquery_3_5_1/jquery.min.js"></script>

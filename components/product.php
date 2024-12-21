@@ -22,6 +22,7 @@
     ?>
         <div class="col-md-4 mt-2 mb-2" id="<?php echo $row['id'] ?>">
           <div class="card">
+            <input type="hidden" name="product_id" id="product_id" value="<?php echo $row['id']; ?>">
             <img
               src="assets/products/<?php echo $row['image'] ?>"
               class="card-img-top"
