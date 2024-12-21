@@ -26,7 +26,6 @@ function update_cart($product_id, $user_id, $status) {
       status: $status,
     },
     success: function (response) {
-      alert("keranjang diupdate");
       $("#badge-cart").load("src/badge_cart.php");
       $("#daftar-cart").load("src/offcanvas_cart.php");
     },
@@ -48,6 +47,9 @@ $(document).ready(function () {
   });
   $(document).on("click", ".cart-btn", function () {
     update_cart(this.id, 1, 1);
+  });
+  $(document).on("click", ".cart-btn-minus", function () {
+    update_cart(this.id, 1, 0);
   });
   $(document).on("click", ".view-btn", function () {
     $("#modal_view_product").load("src/modal_content.php", { id: this.id });

@@ -24,20 +24,23 @@ CREATE TABLE IF NOT EXISTS `cart_items_tbl` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `status_transaction` int(11) DEFAULT NULL,
+  `status_changed_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_cart_items_tbl_products_tbl` (`product_id`),
   KEY `FK_cart_items_tbl_users_tbl` (`user_id`),
   CONSTRAINT `FK_cart_items_tbl_products_tbl` FOREIGN KEY (`product_id`) REFERENCES `products_tbl` (`id`),
   CONSTRAINT `FK_cart_items_tbl_users_tbl` FOREIGN KEY (`user_id`) REFERENCES `users_tbl` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table eshope24.cart_items_tbl: ~3 rows (approximately)
+-- Dumping data for table eshope24.cart_items_tbl: ~8 rows (approximately)
 /*!40000 ALTER TABLE `cart_items_tbl` DISABLE KEYS */;
-INSERT INTO `cart_items_tbl` (`id`, `product_id`, `user_id`, `created_at`, `updated_at`, `status_transaction`) VALUES
-	(1, 3, 1, '2024-12-21 19:37:32', '2024-12-21 19:37:32', NULL),
-	(2, 1, 1, '2024-12-21 19:50:54', '2024-12-21 19:50:54', NULL),
-	(3, 2, 1, '2024-12-21 19:51:03', '2024-12-21 19:51:03', NULL),
-	(4, 2, 1, '2024-12-21 19:56:28', '2024-12-21 19:56:28', NULL);
+INSERT INTO `cart_items_tbl` (`id`, `product_id`, `user_id`, `created_at`, `updated_at`, `status_transaction`, `status_changed_date`) VALUES
+	(1, 3, 1, '2024-12-21 19:37:32', '2024-12-21 19:37:32', NULL, NULL),
+	(3, 2, 1, '2024-12-21 19:51:03', '2024-12-21 19:51:03', NULL, NULL),
+	(4, 2, 1, '2024-12-21 19:56:28', '2024-12-21 19:56:28', NULL, NULL),
+	(5, 3, 1, '2024-12-21 20:07:49', '2024-12-21 20:07:49', NULL, NULL),
+	(6, 3, 1, '2024-12-21 20:07:52', '2024-12-21 20:07:52', NULL, NULL),
+	(7, 3, 1, '2024-12-21 20:18:11', '2024-12-21 20:18:11', NULL, NULL);
 /*!40000 ALTER TABLE `cart_items_tbl` ENABLE KEYS */;
 
 -- Dumping structure for table eshope24.checkouts_tbl
