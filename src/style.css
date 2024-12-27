@@ -42,7 +42,7 @@ body {
   padding: 10px;
 }
 
-.responsive {
+.responsive-img {
   width: 100%;
   max-width: 300px;
   height: auto;

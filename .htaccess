@@ -1,0 +1,9 @@
+# Melarang akses langsung ke folder auth
+RewriteEngine On
+
+# Mengarahkan pengguna yang mencoba mengakses folder auth ke auth.php
+RewriteCond %{REQUEST_URI} ^/eshope24/
+RewriteRule ^$ /eshope24/index.php [L]
+
+# Untuk memastikan tidak ada listing file dalam folder auth
+Options -Indexes

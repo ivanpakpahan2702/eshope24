@@ -1,5 +1,7 @@
 <?php include 'db_conn.php';
-$sql = "SELECT COUNT(id) FROM wishlist_items_tbl WHERE user_id=1";
-$result = mysqli_query($conn, $sql);
-$data = mysqli_fetch_assoc($result);
-echo $data['COUNT(id)'];
+$user_id = $_POST['user_id'];
+$sql = "SELECT COUNT(id) FROM wishlist_items_tbl WHERE user_id=$user_id";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+echo $row['COUNT(id)'];
+$conn->close();
