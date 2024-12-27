@@ -102,7 +102,16 @@ if ($result->num_rows > 0) {
         <input type="text" class="form-control mb-2"
             name="postal_code" id="postal_code">
         <button id="check_out_btn" type="button"
-            class="btn btn-primary mt-5">Checkouts</button>
+            class="btn btn-primary mt-5">
+            <div id="checkout-spinners"
+                style="display:none;"
+                class="spinner-border spinner-border-sm text-info"
+                role="status">
+                <span
+                    class="visually-hidden">Loading...</span>
+            </div>
+            Checkouts
+        </button>
     </div>
 <?php
 } else {

@@ -86,6 +86,10 @@ function checkout(
         products_id_amount_list,
     },
     success: function (response) {
+      $("#checkout-spinners").css(
+        "display",
+        "none"
+      );
       let myArray = JSON.parse(response);
       window.snap.pay(myArray[1], {
         onSuccess: function (result) {
@@ -150,13 +154,13 @@ function getCartProductId() {
   });
   return JSON.stringify(CartProductId);
 }
-
 // document ready
 $(document).ready(function () {
   let user_id = $("#session-user-id").val();
 
   // spinners hide
   $(".spinners").hide();
+  $("#checkout-spinners").css("display", "none");
 
   // like
   $("#badge-wishlist").load(
@@ -267,6 +271,10 @@ $(document).ready(function () {
           confirmButtonText: "Ok",
         });
       } else {
+        $("#checkout-spinners").css(
+          "display",
+          "inline-block"
+        );
         checkout(
           name,
           email,
