@@ -101,6 +101,7 @@ function checkout(
             confirmButtonText: "Ok",
           });
           console.log(result);
+          window.location.href = "index.php";
         },
         onPending: function (result) {
           /* You may add your own implementation here */
@@ -111,11 +112,13 @@ function checkout(
             confirmButtonText: "Ok",
           });
           console.log(result);
+          window.location.href = "index.php";
         },
         onError: function (result) {
           /* You may add your own implementation here */
           alert("payment failed!");
           console.log(result);
+          window.location.href = "index.php";
         },
         onClose: function () {
           /* You may add your own implementation here */
@@ -174,6 +177,18 @@ $(document).ready(function () {
     }
   );
 
+  // pending
+  $("#pending-list").load(
+    "src/offcanvas_pending.php",
+    { user_id: user_id }
+  );
+
+  // selesai
+  $("#complete-list").load(
+    "src/offcanvas_complete.php",
+    { user_id: user_id }
+  );
+
   // cart
   $("#badge-cart").load("src/badge_cart.php", {
     user_id: user_id,
@@ -193,6 +208,16 @@ $(document).ready(function () {
         $("#" + this.id).data("product"),
         user_id
       );
+    }
+  );
+
+  //view notif
+  $(document).on(
+    "click",
+    ".view-notif",
+    function () {
+      let id = this.id;
+      window.snap.pay(id.slice(4));
     }
   );
 

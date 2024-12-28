@@ -11,11 +11,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-
--- Dumping database structure for eshope24
-CREATE DATABASE IF NOT EXISTS `eshope24` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE `eshope24`;
-
 -- Dumping structure for table eshope24.cart_items_tbl
 CREATE TABLE IF NOT EXISTS `cart_items_tbl` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -31,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `cart_items_tbl` (
   CONSTRAINT `FK_cart_items_tbl_orders_tbl` FOREIGN KEY (`order_id`) REFERENCES `orders_tbl` (`id`),
   CONSTRAINT `FK_cart_items_tbl_products_tbl` FOREIGN KEY (`product_id`) REFERENCES `products_tbl` (`id`),
   CONSTRAINT `FK_cart_items_tbl_users_tbl` FOREIGN KEY (`user_id`) REFERENCES `users_tbl` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=144 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
