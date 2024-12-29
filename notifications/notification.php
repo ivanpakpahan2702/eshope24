@@ -15,11 +15,9 @@ if ($data && isset($data['status_code'])) {
 
     // Lakukan update status di database
     updateTransactionStatus($conn, $order_id, $status);
-    echo 'Mantap';
 } else {
     // Jika status bukan success, bisa log atau tangani sesuai kebutuhan
     error_log('Transaction failed or invalid notification.');
-    echo 'Betul';
 }
 
 // Fungsi untuk update status transaksi di database

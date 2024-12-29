@@ -86,7 +86,7 @@ $result = $conn->query($sql);
 $conn->commit();
 
 $sql = "
-UPDATE cart_items_tbl set order_id = '$order_id' where user_id = '$user_id'";
+UPDATE cart_items_tbl set order_id = '$order_id' where user_id = '$user_id' AND order_id IS NULL";
 
 $result = $conn->query($sql);
 $conn->commit();
